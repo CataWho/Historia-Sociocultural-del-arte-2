@@ -2,7 +2,7 @@
 
 Página de estudio para la materia **Historia Social del Arte II** (cursada 2026). Cada clase tiene un resumen del texto obligatorio, una línea de tiempo de los hechos que cuenta y una galería con imágenes de los lugares y obras que nombra.
 
-**Ver la página:** https://TU-USUARIO.github.io/hsa-ii/
+**Ver la página:** https://catawho.github.io/Historia-Sociocultural-del-arte-2/
 
 ## Qué tiene cada clase
 
