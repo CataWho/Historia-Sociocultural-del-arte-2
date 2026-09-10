@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HSA II 2026 · Cuaderno de clases</title>
+<meta name="description" content="Resúmenes por clase de Historia Social del Arte II: líneas de tiempo, lugares y obras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans:wght@400;500;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{
+  --piedra:#E4E7EA;      /* piedra fría de fondo */
+  --pergamino:#F4F5F3;   /* superficies */
+  --tinta:#1E2536;       /* texto */
+  --tinta-suave:#4C5468;
+  --lapis:#27479A;       /* azul de vitral */
+  --lapis-osc:#1B2F66;
+  --oro:#A87D22;         /* hoja de oro */
+  --rubrica:#9C2A24;     /* rojo de rúbrica */
+  --linea:#C3C8D0;
+  --serif:"Alegreya", Georgia, serif;
+  --sans:"Alegreya Sans", "Segoe UI", sans-serif;
+  --gotica:"UnifrakturMaguntia", "Old English Text MT", serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+body{margin:0;background:var(--piedra);color:var(--tinta);font-family:var(--serif);font-size:1.075rem;line-height:1.62}
+a{color:var(--lapis)}
+:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* barra de clases */
+.clases{background:var(--lapis-osc);color:#E9ECF4;font-family:var(--sans)}
+.clases .wrap{display:flex;gap:6px;align-items:stretch;overflow-x:auto;padding-top:10px}
+.clases .marca{font-weight:700;padding:10px 18px 12px 0;white-space:nowrap;letter-spacing:.01em}
+.tab{appearance:none;border:0;background:transparent;color:#C9D1E6;font:inherit;padding:10px 16px 12px;cursor:pointer;border-radius:6px 6px 0 0;white-space:nowrap;text-align:left;line-height:1.2}
+.tab small{display:block;font-size:.8rem;opacity:.75}
+.tab:hover{color:#fff}
+.tab[aria-current="true"]{background:var(--piedra);color:var(--tinta)}
+.tab.pendiente small::after{content:" (sin material)"}
+
+/* portada de la clase */
+.hero{padding:44px 0 0}
+.hero .fecha{font-family:var(--sans);color:var(--tinta-suave);margin:0 0 4px;font-size:1rem}
+.hero h1{font-family:var(--gotica);font-weight:400;font-size:clamp(3.2rem,9vw,6.6rem);line-height:.95;margin:0;color:var(--tinta)}
+.hero .ref{margin:14px 0 0;max-width:62ch;color:var(--tinta-suave)}
+.hero .ref cite{font-style:italic;color:var(--tinta)}
+.tambien{font-family:var(--sans);font-size:.95rem;color:var(--tinta-suave);margin:6px 0 0}
+
+/* skyline de torres: navegador por siglos */
+.skyline{margin:36px 0 0;border-bottom:3px solid var(--tinta)}
+.skyline p{font-family:var(--sans);font-size:.92rem;color:var(--tinta-suave);margin:0 0 10px}
+.torres{display:flex;align-items:flex-end;gap:clamp(6px,2vw,22px);height:230px}
+.torre{flex:1;appearance:none;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;color:var(--tinta)}
+.torre .cuerpo{width:min(64px,100%);background:var(--tinta);position:relative;transition:background .2s}
+.torre .cuerpo::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px;background:
+  linear-gradient(90deg,var(--tinta) 0 22%,transparent 22% 39%,var(--tinta) 39% 61%,transparent 61% 78%,var(--tinta) 78%);transition:background .2s}
+.torre .cuerpo::after{content:"";position:absolute;left:50%;top:18px;width:6px;height:calc(100% - 36px);transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,var(--piedra) 0 14px,transparent 14px 34px);opacity:.85}
+.torre .num{font-family:var(--gotica);font-size:1.5rem;color:var(--rubrica);margin-top:6px;line-height:1.1}
+.torre .cant{font-family:var(--sans);font-size:.75rem;color:var(--tinta-suave)}
+.torre:hover .cuerpo,.torre:focus-visible .cuerpo{background:var(--lapis)}
+.torre:hover .cuerpo::before,.torre:focus-visible .cuerpo::before{background:linear-gradient(90deg,var(--lapis) 0 22%,transparent 22% 39%,var(--lapis) 39% 61%,transparent 61% 78%,var(--lapis) 78%)}
+
+/* navegación interna */
+.subnav{position:sticky;top:0;z-index:5;background:var(--piedra);border-bottom:1px solid var(--linea)}
+.subnav .wrap{display:flex;gap:22px;overflow-x:auto;font-family:var(--sans)}
+.subnav a{padding:12px 0;text-decoration:none;color:var(--tinta-suave);white-space:nowrap;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--tinta);border-color:var(--oro)}
+
+section.bloque{padding:56px 0 8px}
+h2{font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1.15;margin:0 0 8px}
+.intro{max-width:66ch;color:var(--tinta-suave);margin:0 0 28px}
+
+/* tesis */
+.tesis{font-size:1.28rem;line-height:1.55;max-width:60ch;margin:0}
+.tesis::first-letter{font-family:var(--gotica);color:var(--rubrica);float:left;font-size:4.1rem;line-height:.8;padding:6px 10px 0 0}
+
+/* secciones del capítulo */
+ol.capitulo{list-style:none;counter-reset:cap;margin:34px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4px 40px}
+ol.capitulo li{counter-increment:cap;padding:18px 0 18px 46px;position:relative;border-top:1px solid var(--linea)}
+ol.capitulo li::before{content:counter(cap);position:absolute;left:0;top:14px;font-family:var(--gotica);font-size:1.9rem;color:var(--rubrica)}
+ol.capitulo h3{margin:0;font-size:1.15rem}
+ol.capitulo .pp{font-family:var(--sans);font-size:.85rem;color:var(--tinta-suave)}
+ol.capitulo p{margin:6px 0 0}
+
+/* línea de tiempo */
+.leyenda{font-family:var(--sans);font-size:.92rem;color:var(--tinta-suave);margin:-12px 0 28px;max-width:70ch}
+.ref-fecha{text-decoration:underline dotted var(--oro);text-underline-offset:4px;text-decoration-thickness:2px}
+.siglo{display:grid;grid-template-columns:120px 1fr;gap:0 28px;scroll-margin-top:60px}
+.siglo-cab{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;padding:26px 0 6px}
+.siglo-cab .num{font-family:var(--gotica);font-size:3rem;color:var(--rubrica);line-height:1;width:120px;text-align:right}
+.siglo-cab h3{margin:0;font-size:1.35rem;font-weight:500}
+.evento{display:contents}
+.evento .cuando{text-align:right;font-family:var(--sans);font-weight:700;color:var(--oro);padding:22px 0 0;font-size:1rem;line-height:1.25}
+.evento .cuerpo{border-left:3px solid var(--tinta);padding:18px 0 22px 26px;position:relative}
+.evento .cuerpo::before{content:"";position:absolute;left:-9px;top:26px;width:15px;height:15px;background:var(--piedra);border:3px solid var(--lapis);transform:rotate(45deg)}
+.evento h4{margin:0;font-size:1.2rem;line-height:1.3}
+.evento p{margin:6px 0 0;max-width:68ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:10px;font-family:var(--sans);font-size:.82rem}
+.meta span{border:1px solid var(--linea);border-radius:3px;padding:1px 8px;color:var(--tinta-suave);background:var(--pergamino)}
+.meta .pag{border-color:var(--rubrica);color:var(--rubrica)}
+.miniaturas{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.mini{appearance:none;border:0;padding:0;background:none;cursor:pointer;width:112px;text-align:left;font-family:var(--sans);font-size:.78rem;color:var(--tinta-suave);line-height:1.25}
+.mini .foto{width:112px;height:84px;border-radius:3px;overflow:hidden;background:var(--linea)}
+.mini img{width:100%;height:100%;object-fit:cover}
+.mini span{display:block;margin-top:4px}
+.mini:hover .foto{outline:2px solid var(--lapis)}
+
+/* galería */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;font-family:var(--sans)}
+.filtros button{appearance:none;border:1px solid var(--tinta);background:transparent;color:var(--tinta);font:inherit;font-size:.92rem;padding:5px 14px;border-radius:999px;cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--tinta);color:var(--pergamino)}
+.filtros input{font:inherit;font-size:.92rem;padding:5px 12px;border:1px solid var(--linea);border-radius:999px;background:var(--pergamino);min-width:210px;margin-left:auto}
+.grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px 22px}
+.pieza{margin:0}
+.pieza button{appearance:none;border:0;padding:0;background:none;cursor:pointer;width:100%;display:block}
+.pieza .foto{aspect-ratio:4/3;background:var(--pergamino);overflow:hidden;border-bottom:3px solid var(--tinta)}
+.pieza img{width:100%;height:100%;object-fit:cover}
+.pieza button:hover .foto{border-color:var(--lapis)}
+.pieza figcaption{padding-top:8px}
+.pieza .nombre{font-weight:700;line-height:1.25;display:block}
+.pieza .tipo{font-family:var(--sans);font-size:.8rem;color:var(--oro);display:block;margin-top:2px}
+.pieza .nota{font-size:.95rem;color:var(--tinta-suave);margin:4px 0 0;line-height:1.45}
+.sin-foto{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--gotica);font-size:3.2rem;color:var(--linea);background:var(--pergamino)}
+.cargando{animation:latido 1.4s ease-in-out infinite}
+@keyframes latido{50%{opacity:.45}}
+.aviso{font-family:var(--sans);background:var(--pergamino);border-left:4px solid var(--rubrica);padding:10px 14px;margin:0 0 22px;display:none}
+
+/* conceptos */
+dl.conceptos{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:0 40px;margin:0}
+dl.conceptos div{border-top:1px solid var(--linea);padding:14px 0}
+dl.conceptos dt{font-weight:700;color:var(--lapis-osc)}
+dl.conceptos dd{margin:4px 0 0}
+
+/* clase pendiente */
+.pend{padding:60px 0}
+.pend ul{padding-left:1.2em}
+
+footer{margin-top:70px;padding:28px 0 40px;border-top:3px solid var(--tinta);font-family:var(--sans);font-size:.9rem;color:var(--tinta-suave)}
+
+/* visor */
+dialog{border:0;padding:0;max-width:min(920px,94vw);background:var(--pergamino);color:var(--tinta);border-radius:4px}
+dialog::backdrop{background:rgba(20,26,40,.78)}
+dialog img{max-height:68vh;width:100%;object-fit:contain;background:#1E2536}
+dialog .txt{padding:16px 22px 20px}
+dialog h3{margin:0;font-size:1.35rem}
+dialog p{margin:6px 0 0}
+dialog .cerrar{position:absolute;top:8px;right:8px;appearance:none;border:0;background:var(--pergamino);color:var(--tinta);font:700 1rem var(--sans);padding:6px 12px;border-radius:3px;cursor:pointer}
+
+@media (max-width:700px){
+  .wrap{padding:0 18px}
+  .torres{height:160px}
+  .siglo{grid-template-columns:1fr}
+  .siglo-cab .num{width:auto;text-align:left}
+  .evento .cuando{text-align:left;padding:16px 0 0 29px;border-left:3px solid var(--tinta)}
+  .evento .cuerpo{padding-top:4px}
+  .evento .cuerpo::before{top:-14px}
+  .filtros input{margin-left:0;width:100%}
+}
+@media print{
+  .clases,.subnav,.skyline,.filtros{display:none}
+  body{background:#fff}
+  section.bloque{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+<nav class="clases" aria-label="Clases">
+  <div class="wrap" id="tabs"><span class="marca">HSA II 2026</span></div>
+</nav>
+<main id="app"></main>
+<footer><div class="wrap">
+  <p>Resúmenes de estudio de la cursada de HSA II 2026, hechos a partir de los textos del cronograma.</p>
+  <p>Las imágenes se cargan desde Wikipedia y Wikimedia Commons. El autor y la licencia de cada una figuran en su página de Wikipedia, que se abre desde el visor de cada imagen.</p>
+</div></footer>
+<dialog id="visor" aria-labelledby="visor-titulo">
+  <button class="cerrar" id="visor-cerrar">Cerrar</button>
+  <img id="visor-img" alt="">
+  <div class="txt">
+    <h3 id="visor-titulo"></h3>
+    <p id="visor-nota"></p>
+    <p><a id="visor-link" target="_blank" rel="noopener">Abrir en Wikipedia</a></p>
+  </div>
+</dialog>
+<script>
+
+/* =========================================================
+   DATOS DE LAS CLASES
+   Para sumar una clase nueva: agregar un objeto a CLASES.
+   ========================================================= */
+const CLASES = [
+{
+  id: "2026-08-27",
+  corto: "27/08",
+  tema: "Modernidad",
+  pendiente: true,
+  lecturas: [
+    "Romero, J.L., «La segunda edad», en La cultura occidental",
+    "Kant, E., «Qué es la Ilustración»",
+    "Documental «El misterio de la pintura de Vermeer», DW"
+  ]
+},
+{
+  id: "2026-09-03",
+  corto: "03/09",
+  tema: "Ciudad gótica",
+  fechaLarga: "Jueves 3 de septiembre, clase teórica: siglos XI a XV",
+  titulo: "La ciudad gótica",
+  referencia: "Romero, José Luis (2009). <cite>La ciudad occidental. Culturas urbanas en Europa y América</cite>. Buenos Aires: Siglo XXI. Capítulo 5, pp. 127–150.",
+  tambien: "Películas de la clase: <em>El Decamerón</em> (P. P. Pasolini) y <em>El nombre de la rosa</em> (J. J. Annaud).",
+
+  tesis: "Romero llama «ciudad gótica» a la ciudad burguesa en su primera fase, desde su aparición hacia el siglo XI hasta su gran transformación en el XVI. Esa sociedad urbana no solo construyó un hábitat —calles, plazas, palacios, murallas— sino que se inventó a sí misma: creó un estilo de vida y una mentalidad (profana, naturalista, experimental) de la que todavía se alimenta el pensamiento moderno. Cuando el patriciado se enriqueció y la sociedad compacta se partió en ricos y pobres, la ciudad gótica se volvió ciudad barroca.",
+
+  secciones: [
+    { t:"Una sociedad compacta y conflictiva", pp:"pp. 127–131",
+      d:"La burguesía rompe con abades y señores y funda la comuna. Dentro de ella surge una aristocracia, el patriciado, que luego enfrenta a los gremios y, en el siglo XIV, a los insurrectos populares. Todo ocurre en ciudades minúsculas, sin anonimato." },
+    { t:"Plazas y espacio público", pp:"pp. 131–135",
+      d:"La ciudad es una creación casi escultórica. El gótico es urbano: calles de unos dos metros, casas que expresan su interior, y la plaza como un interior colectivo donde se forman opiniones, valores y gusto." },
+    { t:"La creación de una mentalidad", pp:"pp. 135–138",
+      d:"Además de la ciudad física, estos grupos crean una sociedad nueva, opuesta a la feudal, y una mentalidad burguesa. Sus actitudes cotidianas se repiten y racionalizan hasta volverse teoría: de ahí sale el pensamiento moderno (el ejemplo es la Ética de Spinoza)." },
+    { t:"La revelación de la profanidad", pp:"pp. 138–140",
+      d:"El hombre deja de ser solo un pecador en un valle de lágrimas y pasa a verse como ser natural y sensible. Se ve en la literatura del XIII y estalla en el XIV (Boccaccio, Chaucer). La actitud típica: agnosticismo, el «no sé»." },
+    { t:"La naturaleza experimental y sensible", pp:"pp. 140–142",
+      d:"Si el hombre es natural, la naturaleza se conoce por la experiencia y los sentidos: Roger Bacon, luego el deísmo. En la pintura, Duccio, Simone Martini, Cimabue y Giotto abandonan lo bizantino y aparece la sensualidad." },
+    { t:"Dios y el mundo", pp:"pp. 142–145",
+      d:"Crisis de la escolástica: Duns Escoto y Occam separan fe y razón. Las cartas comunales ya contienen la idea de contrato social. El burgués cumple cada vez más formalmente con la Iglesia mientras crece una mística individual que desembocará en la Reforma." },
+    { t:"El encubrimiento", pp:"pp. 146–148",
+      d:"Frente a las consecuencias del naturalismo hay arrepentidos (danzas de la muerte, Savonarola), una línea popular que persiste en él y, sobre todo, una posición conciliadora que lo enmascara bajo formas. Maquiavelo se atreve a decirlo en voz alta." },
+    { t:"El patriciado y las cortes", pp:"pp. 149–150",
+      d:"Las familias patricias se enriquecen y adoptan un estilo principesco. Contra Burckhardt, Romero sostiene que las cortes del Quattrocento son de origen burgués. Esa ostentación anticipa la vida como espectáculo de la ciudad barroca." }
+  ],
+
+  /* eventos: cuando = texto de fecha; ref = true si la fecha NO figura en el texto (se agrega como referencia) */
+  siglos: [
+    { n:"XI", nombre:"Siglo XI", eventos:[
+      { cuando:"Hacia el siglo XI", t:"Nace la ciudad burguesa",
+        d:"Surge en los intersticios del orden feudal cristiano. Cuando tuvo fuerza, rompió su dependencia del abad, el señor, el rey o el emperador y se dio un gobierno propio: la comuna. Sus cartas o fueros eran muy democráticos y la ciudad gótica primitiva era igualitaria.",
+        pag:"p. 127", sec:"Sociedad compacta", img:["rothenburg","carcassonne"] },
+      { cuando:"Siglos XI y XII", t:"Las revoluciones comunales",
+        d:"Los burgueses de Santiago de Compostela luchan contra su arzobispo y señor, Diego Gelmírez, para conseguir una carta de comuna (lo cuenta la Crónica compostelana). Pasa lo mismo en Laón, Milán, Colonia y Gante. Romero calcula unas trescientas ciudades con procesos así; el patriciado arranca privilegios a los señores, a menudo con violencia.",
+        pag:"p. 128", sec:"Sociedad compacta", img:["santiago","gelmirez","gante"] },
+      { cuando:"1096–1099", ref:true, t:"Venecia acompaña la Primera Cruzada",
+        d:"La aristocracia veneciana, con gran energía empresarial, organiza el tráfico comercial con Oriente y sigue a los caballeros cristianos. Sus carracas se instalan en puertos de Siria y el Líbano como Laodicea, Trípoli o Biblos.",
+        pag:"p. 128", sec:"Sociedad compacta", img:["biblos","venecia"] }
+    ]},
+    { n:"XII", nombre:"Siglo XII", eventos:[
+      { cuando:"Siglo XII (1127)", ref:true, t:"Brujas mata al conde Carlos el Bueno",
+        d:"Ejemplo extremo de las luchas comunales contra el poder señorial.",
+        pag:"p. 128", sec:"Sociedad compacta", img:["carlos-bueno","brujas-markt"] },
+      { cuando:"Siglos XII y XIII", t:"Aparece el patriciado",
+        d:"Dentro de la burguesía, quienes acumularon capital primero forman una aristocracia y toman el poder. Es visible en casi todas las ciudades europeas; en Venecia dejó huellas especialmente claras. Quiere el monopolio del poder y de la riqueza.",
+        pag:"pp. 127–128", sec:"Sociedad compacta", img:["palacio-ducal"] },
+      { cuando:"Siglo XII", t:"Abelardo distingue razón y fe",
+        d:"Reivindica, a su modo, que el dominio de la razón es distinto del dominio de la fe. Ese principio recién queda aceptado en el siglo XIV.",
+        pag:"p. 142", sec:"Dios y el mundo", img:["abelardo"] },
+      { cuando:"Siglo XII", t:"Primeros testimonios de profanidad",
+        d:"El teatro cómico (el Juego de San Nicolás) y el Roman de Renart muestran al hombre como ser natural y la sensibilidad burguesa. La mentalidad nueva se ve en gestos cotidianos: cómo se enfrenta el árbol que hay que cortar o cómo los mercaderes llevan las cuentas.",
+        pag:"pp. 139, 141, 143", sec:"Profanidad", img:["jeu-nicolas","renart"] }
+    ]},
+    { n:"XIII", nombre:"Siglo XIII", eventos:[
+      { cuando:"Siglo XIII", t:"La moral escolástica",
+        d:"Pedro Lombardo, San Bernardo de Claraval y Santo Tomás racionalizan la moral de tradición cristiano-feudal. Es el sistema del que se alejará la moral burguesa que siglos después formula Spinoza.",
+        pag:"p. 137", sec:"Mentalidad", img:["aquino"] },
+      { cuando:"Siglo XIII", t:"Roger Bacon y el conocimiento experimental",
+        d:"Este franciscano de Oxford sostiene que el camino del conocimiento no es la revelación sino el examen experimental. Para Romero, el conocimiento experimental empieza con él y no con Francis Bacon en el XVI.",
+        pag:"p. 140", sec:"Naturaleza sensible", img:["roger-bacon"] },
+      { cuando:"Siglo XIII", t:"El Roman de la Rose",
+        d:"Escrito por Guillaume de Lorris y Jean de Meung, es uno de los cientos de testimonios de la nueva concepción del hombre como ser natural.",
+        pag:"p. 139", sec:"Profanidad", img:["roman-rose"] },
+      { cuando:"Siglo XIII", t:"La partida doble de los mercaderes genoveses",
+        d:"Nace de una actitud nueva: la naturaleza no tiene más designio que el que el hombre le impone con su razón. Romero conecta esa actitud con Boccaccio y con todo el pensamiento moderno.",
+        pag:"p. 141", sec:"Naturaleza sensible", img:["genova"] },
+      { cuando:"Siglo XIII", t:"El Fondaco dei Tedeschi en Venecia",
+        d:"Almacén de los mercaderes alemanes. Romero lo usa como edificio gótico típico: lo de adentro se expresa afuera, a diferencia de la fachada barroca pensada como espectáculo separado del interior.",
+        pag:"p. 132", sec:"Plazas y espacio público", img:["fondaco"] },
+      { cuando:"1297", t:"Venecia cierra su aristocracia",
+        d:"Episodio que Romero llama la «Fermata del Libro de Oro» (conocido como Serrata del Maggior Consiglio): solo las familias que ya habían ocupado cargos ducales pueden gobernar. El patriciado entendió que el fenómeno social necesitaba un freno político, y el acto fue imitado en todas partes.",
+        pag:"p. 128", sec:"Sociedad compacta", img:["palacio-ducal","venecia"] },
+      { cuando:"Siglos XIII y XIV", t:"Los gremios contra los patricios",
+        d:"Segunda etapa de luchas. Se forman regímenes patricio-gremiales: asambleas comunales con representantes de ambos sectores. Las constituciones patricias son reemplazadas por constituciones comunales de transacción, con intervención del duque de Borgoña y los reyes de Francia e Inglaterra.",
+        pag:"p. 129", sec:"Sociedad compacta", img:["ypres"] },
+      { cuando:"Fines del XIII y XIV", ref:true, t:"La pintura abandona lo bizantino",
+        d:"Duccio y Simone Martini en Siena, Cimabue y Giotto producen un viraje: aparece una sensualidad que, paso a paso, lleva a Botticelli y a Rafael. Berenson definió la cultura italiana del XV como ligada al tacto.",
+        pag:"pp. 141–142", sec:"Naturaleza sensible", img:["duccio","cimabue","simone"] }
+    ]},
+    { n:"XIV", nombre:"Siglo XIV", eventos:[
+      { cuando:"Hacia 1300", ref:true, t:"Blancos y negros en Florencia",
+        d:"Las dos facciones patricias vivían a unos 40 metros una de otra; la torre güelfa estaba a 150 metros de las gibelinas. Las torres de San Gimignano, las de Bolonia o la de los Embriaci en Génova muestran una sociedad agitada, en ciudades pequeñísimas donde nadie pierde el contacto cara a cara.",
+        pag:"p. 131", sec:"Sociedad compacta", img:["bolonia-torres","san-gimignano","embriaci"] },
+      { cuando:"Principios del XIV", ref:true, t:"Giotto en la capilla de los Scrovegni",
+        d:"En Padua. Romero la cita como ejemplo de capilla que lleva el nombre del donante, la familia que pagó la obra.",
+        pag:"p. 150", sec:"Patriciado y cortes", img:["scrovegni"] },
+      { cuando:"Siglo XIV", t:"Dante y la Divina Comedia",
+        d:"Romero la ve como la epopeya de la Florencia burguesa: Infierno, Purgatorio y Paraíso serían tres estadios de la Florencia que lo expulsó. Dante también ubica entre los epicúreos (los «ateos» de la época) a Federico II de Sicilia y sospecha de su amigo Guido Cavalcanti.",
+        pag:"pp. 135, 145", sec:"Plazas / Dios y el mundo", img:["divina-comedia","federico-ii"] },
+      { cuando:"Siglo XIV", t:"Crisis de la escolástica",
+        d:"Con Duns Escoto y Guillermo de Occam se escinden los campos del conocimiento: las verdades de la fe no necesitan argumentación lógica, pero se admite otro campo donde valen más la razón y la experiencia.",
+        pag:"pp. 142–143", sec:"Dios y el mundo", img:["occam"] },
+      { cuando:"Siglo XIV", t:"Occam, Luis IV de Baviera y el contrato social",
+        d:"Occam aconseja a un emperador que no quiere la unción del papa sino ser proclamado por el pueblo, algo que anticipa la soberanía popular. Para Romero, eso ya lo practicaban los grupos de burgueses que se juntaban en Arrás, Gante o Lübeck: la ciudad nace de un contrato social, cuatro siglos antes de Locke y Rousseau.",
+        pag:"p. 143", sec:"Dios y el mundo", img:["luis-baviera"] },
+      { cuando:"1348", t:"La peste negra y el Decamerón",
+        d:"Boccaccio sitúa el comienzo del Decamerón en el año de la peste: damas florentinas refugiadas en una villa se cuentan historias. Es parte de la explosión naturalista del XIV junto con los Cuentos de Canterbury de Chaucer, Sacchetti y los arciprestes de Talavera y de Hita.",
+        pag:"pp. 139–140, 142", sec:"Profanidad", img:["decameron","canterbury","hita"] },
+      { cuando:"Siglo XIV", t:"La mística individualista",
+        d:"Enrique Suso, Jan van Ruysbroeck y Meister Eckhart (y luego Tomás de Kempis y San Juan de la Cruz) plantean un sentimiento de Dios propio, sin intermediarios. Se opone a la fe formal y a los buscadores de prestigio que compiten por levantar la catedral más alta (Laon, Reims, Chartres).",
+        pag:"pp. 144–145", sec:"Dios y el mundo", img:["eckhart","laon","reims"] },
+      { cuando:"Mediados del XIV (1378)", ref:true, t:"La insurrección de los ciompi",
+        d:"Las insurrecciones populares de quienes no tenían oficio. En Florencia estalla contra los gremios acomodados, los patricios y los señores a la vez: contra «todo el mundo». La encabeza Michele di Lando.",
+        pag:"p. 129", sec:"Sociedad compacta", img:["michele-lando","palazzo-vecchio"] },
+      { cuando:"Hacia 1340", ref:true, t:"Jacques van Artevelde en Gante",
+        d:"Caudillo que, visto por patricios y señores, parecía popular; en realidad representaba al alto nivel de los oficios, sobre todo los tejedores, el sector industrial más poderoso de Gante.",
+        pag:"p. 129", sec:"Sociedad compacta", img:["artevelde","gante"] },
+      { cuando:"Siglos XIV y XV", t:"Palacios y edificios públicos góticos",
+        d:"La burguesía crea una arquitectura civil señorial (Ca' d'Oro, Gruuthuse en Brujas, casa de Jacques Coeur en Bourges, casa del Cordón en Burgos), una arquitectura pública (Ypres, palacio de los dux) y edificios semipúblicos: lonjas, mercados y hospitales como los de Núremberg, Lübeck o Toledo.",
+        pag:"p. 134", sec:"Plazas y espacio público", img:["ca-doro","gruuthuse","jacques-coeur"] }
+    ]},
+    { n:"XV", nombre:"Siglo XV", eventos:[
+      { cuando:"Siglo XV", t:"La danza de la muerte",
+        d:"Algunos que vieron las consecuencias del naturalismo se arrepienten. La danza macabra es el gran tema literario del siglo, en muchas lenguas; una variante son las Coplas de Jorge Manrique. En pintura, los frescos de Buonamico di Cristofano en el Camposanto de Pisa y los de Andrea Bonaiuti en la capilla de los Españoles de Santa María Novella.",
+        pag:"p. 146", sec:"Encubrimiento", img:["danza-macabra","triunfo-muerte","capilla-espanoles"] },
+      { cuando:"Siglo XV", t:"La Farce de Maître Pathelin",
+        d:"Otro ejemplo del teatro cómico donde aparece el hombre de la ciudad, realista y naturalista.",
+        pag:"p. 139", sec:"Profanidad", img:["pathelin"] },
+      { cuando:"Siglo XV", t:"La naturaleza sensible en la pintura del norte",
+        d:"No solo en Italia: Van Eyck, Memling, Lucas Cranach, la pintura aragonesa, las miniaturas y Jean Fouquet, pintor de Carlos VII. La naturaleza se percibe como algo sensual, plástico y conocible por los sentidos.",
+        pag:"p. 142", sec:"Naturaleza sensible", img:["van-eyck","memling","fouquet"] },
+      { cuando:"Siglo XV", t:"Las cortes principescas del Quattrocento",
+        d:"Visconti, Ferrara, Medici, Sforza. Burckhardt las leyó como cortes señoriales; Romero sostiene que son casas patricias de origen burgués que imitan a los grandes señores. Lo muestra el Cortejo de los Reyes Magos de Benozzo Gozzoli en el palacio Medici-Riccardi, la Venecia de los Bellini y los retratos de donantes.",
+        pag:"pp. 149–150", sec:"Patriciado y cortes", img:["gozzoli","bellini","enrique"] },
+      { cuando:"Siglo XV", t:"Alberti, teórico de la mentalidad burguesa",
+        d:"Los primeros clásicos de la mentalidad burguesa hay que buscarlos en Florencia; Leone Battista Alberti sería el primer gran teórico de esa forma de concebir al hombre y la vida.",
+        pag:"p. 148", sec:"Encubrimiento", img:["alberti"] },
+      { cuando:"1498", ref:true, t:"Savonarola, quemado en la plaza de la Signoria",
+        d:"Lo queman quienes lo escuchaban fervorosamente días antes, en la misma plaza donde él había mandado quemar herejes y obras de arte: el duelo entre sacralidad y profanidad. Según una anécdota, real o ficticia, Maquiavelo asumió ese día su puesto en la Signoria y lo vio desde una ventana.",
+        pag:"pp. 133–134, 146, 148", sec:"Encubrimiento", img:["savonarola","plaza-signoria"] },
+      { cuando:"Fines del XV", t:"La ciudad gótica cambia de estilo",
+        d:"El patriciado se separa cada vez más del resto. La sociedad compacta de la ciudad gótica se divide en dos ciudades, una de ricos y otra de pobres: nace la ciudad barroca.",
+        pag:"p. 150", sec:"Patriciado y cortes", img:["bolonia-torres"] }
+    ]},
+    { n:"XVI", nombre:"Siglo XVI", eventos:[
+      { cuando:"Principios del XVI", t:"Maquiavelo dice lo que todos pensaban",
+        d:"Se atrevió a sostener explícitamente la concepción del hombre que había elaborado la burguesía, cuando lo que predominaba era enmascararla. Por eso, dice Romero, todavía no se lo perdonan.",
+        pag:"p. 148", sec:"Encubrimiento", img:["maquiavelo"] },
+      { cuando:"Principios del XVI", t:"La Reforma",
+        d:"Resultado de la polarización entre una comunidad cada vez más cumplidora de sus deberes formales y la búsqueda de una piedad verdadera.",
+        pag:"p. 144", sec:"Dios y el mundo", img:["lutero"] },
+      { cuando:"Siglo XVI", t:"El patriciado adopta un estilo principesco",
+        d:"Las familias ya no atienden detrás del mostrador ni esperan los barcos: viven en la planta alta o separan la bottega de la vivienda. Tintoretto retrata esa Venecia. Bolonia, en una vista de comienzos del XVI, todavía muestra su bosque de torres.",
+        pag:"pp. 130, 149–150", sec:"Patriciado y cortes", img:["tintoretto","bolonia-torres"] },
+      { cuando:"Fines del XVI", t:"Las verdades de compromiso",
+        d:"Rafael pinta campesinas toscanas como madonas; Quevedo esconde profanidad bajo religiosidad; los refranes de Sancho Panza conciliaban, como «primero es la obligación y después la devoción». Ese compromiso fue el gran invento de la burguesía.",
+        pag:"p. 147", sec:"Encubrimiento", img:["rafael","sancho"] }
+    ]},
+    { n:"XVII", nombre:"Siglo XVII", eventos:[
+      { cuando:"Siglo XVII", t:"De la actitud a la teoría",
+        d:"Edward Herbert de Cherbury desarrolla el deísmo: Dios crea, pero la naturaleza se emancipa y funciona por sus propias leyes. Spinoza formula en su Ética, «more geometrico», una moral empírica que ya existía en los siglos XV y XVI. Descartes todavía envuelve todo con cuidado. Galileo y Newton metodizan la vía empírica y racional.",
+        pag:"pp. 137–138, 141, 148", sec:"Mentalidad", img:["spinoza","herbert"] },
+      { cuando:"Siglo XVII", t:"El avaro de Molière",
+        d:"El tema del burgués cada vez más apegado al dinero y a las cosas terrenales, ya presente en el teatro cómico medieval.",
+        pag:"p. 143", sec:"Dios y el mundo", img:["avaro"] }
+    ]},
+    { n:"XVIII", nombre:"Siglo XVIII", eventos:[
+      { cuando:"Siglo XVIII", t:"La Ilustración rompe el equilibrio",
+        d:"La Enciclopedia, Voltaire (deísta, nunca ateo) y Rousseau dicen sin ambages cuál es la concepción natural del hombre y de la naturaleza, que se empieza a escribir con mayúscula. Kant culmina la línea empirista y racionalista: solo conocemos apariencias. Locke y Rousseau teorizan el contrato social que ya estaba en las cartas comunales.",
+        pag:"pp. 138–140, 143, 147–148", sec:"Encubrimiento", img:["enciclopedia","kant"] }
+    ]}
+  ],
+
+  /* galería: wiki = candidatos de artículo de Wikipedia (idioma:título), se usa el primero con imagen */
+  galeria: [
+    // Ciudades y plazas
+    { id:"bolonia-torres", n:"Torres de Bolonia", tipo:"Ciudad o plaza", p:"pp. 130–131", nota:"Testimonio de una sociedad agitada y conflictiva. El libro incluye una vista de la ciudad de comienzos del XVI.", wiki:["en:Towers of Bologna","es:Torres de Bolonia"] },
+    { id:"san-gimignano", n:"Torres de San Gimignano", tipo:"Ciudad o plaza", p:"p. 131", nota:"Otro ejemplo de las torres familiares nacidas del conflicto entre facciones.", wiki:["en:San Gimignano"] },
+    { id:"embriaci", n:"Torre de los Embriaci, Génova", tipo:"Ciudad o plaza", p:"p. 131", nota:"En el barrio viejo de Génova.", wiki:["it:Torre degli Embriaci","en:Torre degli Embriaci"] },
+    { id:"plaza-signoria", n:"Plaza de la Signoria, Florencia", tipo:"Ciudad o plaza", p:"pp. 133–134, 146", nota:"Corazón de la ciudad: allí quemaron a Savonarola y estalló el tumulto de los ciompi.", wiki:["en:Piazza della Signoria"] },
+    { id:"plaza-san-marcos", n:"Plaza de San Marcos, Venecia", tipo:"Ciudad o plaza", p:"p. 133", nota:"Una de las plazas famosas donde se hizo la historia de la ciudad burguesa.", wiki:["en:Piazza San Marco"] },
+    { id:"campo-fiori", n:"Campo dei Fiori", tipo:"Ciudad o plaza", p:"p. 133", nota:"Nombrada entre las plazas italianas. La plaza más conocida con este nombre está en Roma.", wiki:["en:Campo de' Fiori"] },
+    { id:"brujas-markt", n:"Plaza del Mercado de Brujas", tipo:"Ciudad o plaza", p:"p. 133", nota:"La Grand Place de Brujas, ejemplo no italiano de plaza gótica.", wiki:["en:Markt (Bruges)","nl:Markt (Brugge)","es:Grote Markt (Brujas)"] },
+    { id:"lubeck", n:"Plaza del Ayuntamiento de Lübeck", tipo:"Ciudad o plaza", p:"pp. 133, 143", nota:"La plaza del Rathaus. Lübeck también aparece entre las ciudades donde los burgueses pactaron su propio sistema de vida.", wiki:["de:Lübecker Rathaus","en:Lübeck Town Hall","en:Lübeck"] },
+    { id:"gamla-stan", n:"Estocolmo de la Isla (Gamla stan)", tipo:"Ciudad o plaza", p:"p. 133", nota:"Aunque tardía, una típica ciudad gótica.", wiki:["en:Gamla stan"] },
+    { id:"barcelona", n:"Barrio Gótico de Barcelona", tipo:"Ciudad o plaza", p:"p. 131", nota:"Entre los conjuntos donde sigue visible la ciudad como creación plástica.", wiki:["en:Gothic Quarter, Barcelona","es:Barrio Gótico (Barcelona)"] },
+    { id:"leon", n:"León viejo", tipo:"Ciudad o plaza", p:"p. 131", nota:"Otra ciudad donde se conserva el conjunto gótico.", wiki:["en:León Cathedral","en:León, Spain"] },
+    { id:"lugo", n:"Lugo", tipo:"Ciudad o plaza", p:"p. 131", nota:"«La vieja Lugo arriba», con su recinto amurallado.", wiki:["en:Roman walls of Lugo","en:Lugo"] },
+    { id:"alfama", n:"Alfama, Lisboa", tipo:"Ciudad o plaza", p:"p. 131", nota:"Barrio antiguo que conserva la trama medieval.", wiki:["en:Alfama"] },
+    { id:"carcassonne", n:"Carcassonne", tipo:"Ciudad o plaza", p:"p. 131", nota:"Ciudad amurallada citada entre los conjuntos que sobreviven.", wiki:["en:Cité de Carcassonne","en:Carcassonne"] },
+    { id:"rothenburg", n:"Rothenburg ob der Tauber", tipo:"Ciudad o plaza", p:"p. 131", nota:"Sobre la llamada «ruta romántica» alemana.", wiki:["en:Rothenburg ob der Tauber"] },
+    { id:"avila", n:"Murallas de Ávila", tipo:"Arquitectura", p:"p. 136", nota:"Ejemplo de la ingente creación material de los grupos burgueses y del uso racional del espacio.", wiki:["en:Walls of Ávila"] },
+    { id:"santiago", n:"Santiago de Compostela", tipo:"Ciudad o plaza", p:"p. 128", nota:"Sus burgueses lucharon contra el arzobispo Gelmírez por una carta de comuna.", wiki:["en:Santiago de Compostela Cathedral","en:Santiago de Compostela"] },
+    { id:"gante", n:"Gante", tipo:"Ciudad o plaza", p:"pp. 128–129", nota:"Revolución comunal y luego la historia de los gremios con Van Artevelde.", wiki:["en:Ghent"] },
+    { id:"venecia", n:"Venecia", tipo:"Ciudad o plaza", p:"p. 128", nota:"Donde el patriciado dejó huellas más fáciles de reconocer.", wiki:["en:Grand Canal (Venice)","en:Venice"] },
+    { id:"biblos", n:"Biblos", tipo:"Ciudad o plaza", p:"p. 128", nota:"Uno de los puertos de Oriente donde se instalaron las carracas venecianas.", wiki:["en:Byblos"] },
+    { id:"genova", n:"Génova", tipo:"Ciudad o plaza", p:"p. 141", nota:"Sus mercaderes llevaban la contabilidad por partida doble en el siglo XIII.", wiki:["en:Genoa"] },
+
+    // Arquitectura
+    { id:"laon", n:"Catedral de Laon", tipo:"Arquitectura", p:"pp. 132, 144", nota:"Con Reims y Chartres, parte de un sistema plástico urbano; también ejemplo de la competencia por la catedral más alta.", wiki:["en:Laon Cathedral"] },
+    { id:"reims", n:"Catedral de Reims", tipo:"Arquitectura", p:"pp. 132, 144", nota:"Una de las grandes catedrales francesas citadas.", wiki:["en:Reims Cathedral"] },
+    { id:"chartres", n:"Catedral de Chartres", tipo:"Arquitectura", p:"pp. 132, 144", nota:"Una de las grandes catedrales francesas citadas.", wiki:["en:Chartres Cathedral"] },
+    { id:"fondaco", n:"Fondaco dei Tedeschi, Venecia", tipo:"Arquitectura", p:"p. 132", nota:"Almacén de los mercaderes alemanes del XIII; el texto dice que funcionaba como correo.", wiki:["en:Fondaco dei Tedeschi"] },
+    { id:"palazzo-vecchio", n:"Palacio de la Signoria, Florencia", tipo:"Arquitectura", p:"p. 132", nota:"Edificio donde lo de adentro se expresa afuera, de manera inseparable.", wiki:["en:Palazzo Vecchio"] },
+    { id:"siena", n:"Palacio comunal de Siena", tipo:"Arquitectura", p:"p. 132", nota:"Otro ejemplo de edificio gótico público.", wiki:["en:Palazzo Pubblico"] },
+    { id:"medici-riccardi", n:"Palacio Medici-Riccardi, Florencia", tipo:"Arquitectura", p:"pp. 132, 149", nota:"Ejemplo gótico y sede del fresco de Gozzoli.", wiki:["en:Palazzo Medici Riccardi"] },
+    { id:"ca-doro", n:"Ca' d'Oro, Venecia", tipo:"Arquitectura", p:"p. 134", nota:"Palacio gótico sobre el Gran Canal: arquitectura civil señorial urbana.", wiki:["en:Ca' d'Oro"] },
+    { id:"gruuthuse", n:"Palacio Gruuthuse, Brujas", tipo:"Arquitectura", p:"p. 134", nota:"Famoso palacio gótico de Brujas.", wiki:["en:Gruuthusemuseum","nl:Gruuthusemuseum"] },
+    { id:"jacques-coeur", n:"Casa de Jacques Coeur, Bourges", tipo:"Arquitectura", p:"p. 134", nota:"Residencia de un gran mercader del XV.", wiki:["en:Palais Jacques Cœur","fr:Palais Jacques-Cœur"] },
+    { id:"casa-cordon", n:"Casa del Cordón, Burgos", tipo:"Arquitectura", p:"p. 134", nota:"Residencia señorial urbana del XV.", wiki:["es:Casa del Cordón (Burgos)","en:Casa del Cordón (Burgos)"] },
+    { id:"ypres", n:"Lonja de los Paños de Ypres", tipo:"Arquitectura", p:"p. 134", nota:"Edificio comunal formidable y a la vez lonja: arquitectura pública y semipública.", wiki:["en:Cloth Hall, Ypres"] },
+    { id:"palacio-ducal", n:"Palacio de los dux, Venecia", tipo:"Arquitectura", p:"p. 134", nota:"Arquitectura pública de dimensión contenida, propia del espacio gótico.", wiki:["en:Doge's Palace"] },
+    { id:"hosp-nuremberg", n:"Hospital de Núremberg", tipo:"Arquitectura", p:"p. 134", nota:"Edificio semipúblico citado junto a los de Lübeck y Toledo.", wiki:["de:Heilig-Geist-Spital (Nürnberg)","en:Heilig-Geist-Spital (Nuremberg)"] },
+    { id:"hosp-lubeck", n:"Hospital de Lübeck", tipo:"Arquitectura", p:"p. 134", nota:"Edificio semipúblico.", wiki:["de:Heiligen-Geist-Hospital (Lübeck)","en:Heiligen-Geist-Hospital (Lübeck)"] },
+    { id:"hosp-toledo", n:"Hospital de las afueras de Toledo", tipo:"Arquitectura", p:"p. 134", nota:"Probablemente el Hospital de Tavera, extramuros de Toledo.", wiki:["es:Hospital de Tavera","en:Hospital de Tavera"] },
+
+    // Pintura
+    { id:"duccio", n:"Duccio di Buoninsegna", tipo:"Pintura y fresco", p:"p. 141", nota:"En Siena, parte del viraje que deja atrás la pintura bizantina.", wiki:["en:Maestà (Duccio)","en:Duccio"] },
+    { id:"simone", n:"Simone Martini", tipo:"Pintura y fresco", p:"p. 141", nota:"Pintor sienés del mismo viraje.", wiki:["en:Maestà (Simone Martini)","en:Simone Martini"] },
+    { id:"cimabue", n:"Cimabue", tipo:"Pintura y fresco", p:"p. 141", nota:"Otro de los que rompen con las formas bizantinas.", wiki:["en:Santa Trinita Maestà","en:Cimabue"] },
+    { id:"scrovegni", n:"Capilla de los Scrovegni, Padua", tipo:"Pintura y fresco", p:"p. 150", nota:"Pintada por Giotto; lleva el nombre de los donantes.", wiki:["en:Scrovegni Chapel"] },
+    { id:"botticelli", n:"Botticelli", tipo:"Pintura y fresco", p:"p. 142", nota:"Punto de llegada de la sensualidad iniciada en el XIII.", wiki:["en:The Birth of Venus","en:Sandro Botticelli"] },
+    { id:"rafael", n:"Rafael", tipo:"Pintura y fresco", p:"pp. 142, 147", nota:"Pinta campesinas toscanas como modelo de sus madonas.", wiki:["en:Madonna of the Meadow","en:Raphael"] },
+    { id:"van-eyck", n:"Van Eyck", tipo:"Pintura y fresco", p:"p. 142", nota:"La percepción sensible de la naturaleza fuera de Italia.", wiki:["en:Ghent Altarpiece","en:Jan van Eyck"] },
+    { id:"memling", n:"Memling", tipo:"Pintura y fresco", p:"pp. 133, 142", nota:"Pinta en Brujas para satisfacer el gusto que se forma en su plaza.", wiki:["en:Hans Memling"] },
+    { id:"cranach", n:"Lucas Cranach", tipo:"Pintura y fresco", p:"p. 142", nota:"Pintura sensible en Alemania.", wiki:["en:Lucas Cranach the Elder"] },
+    { id:"fouquet", n:"Jean Fouquet", tipo:"Pintura y fresco", p:"p. 142", nota:"Pintor de Carlos VII de Francia.", wiki:["en:Portrait of Charles VII of France","en:Jean Fouquet"] },
+    { id:"triunfo-muerte", n:"Frescos del Camposanto de Pisa", tipo:"Pintura y fresco", p:"p. 146", nota:"De Buonamico di Cristofano (Buffalmacco): respuesta pictórica al tema de la muerte.", wiki:["en:Buonamico Buffalmacco","en:Camposanto Monumentale"] },
+    { id:"capilla-espanoles", n:"Capilla de los Españoles, Santa María Novella", tipo:"Pintura y fresco", p:"p. 146", nota:"Frescos de Andrea Bonaiuti, inspirados en los sermones de Passavanti.", wiki:["it:Cappellone degli Spagnoli","en:Santa Maria Novella"] },
+    { id:"danza-macabra", n:"Danza de la muerte", tipo:"Pintura y fresco", p:"p. 146", nota:"Gran tema literario del XV, también representado en imágenes.", wiki:["en:Danse Macabre"] },
+    { id:"gozzoli", n:"El cortejo de los Reyes Magos, Gozzoli", tipo:"Pintura y fresco", p:"p. 149", nota:"El esplendor de los Medici encarnado en los Reyes Magos y su comitiva.", wiki:["en:Magi Chapel","en:Procession of the Magi","en:Benozzo Gozzoli"] },
+    { id:"bellini", n:"La Venecia de los Bellini", tipo:"Pintura y fresco", p:"p. 150", nota:"La vida veneciana vista a través de su pintura.", wiki:["en:Procession in St. Mark's Square","en:Gentile Bellini"] },
+    { id:"tintoretto", n:"Tintoretto", tipo:"Pintura y fresco", p:"p. 150", nota:"La vida veneciana del XVI.", wiki:["en:Tintoretto"] },
+    { id:"enrique", n:"Retrato de Enrique el Navegante, Lisboa", tipo:"Pintura y fresco", p:"p. 150", nota:"Romero lo menciona como famoso fresco de Lisboa.", wiki:["en:Henry the Navigator"] },
+
+    // Literatura y pensamiento
+    { id:"divina-comedia", n:"Divina Comedia, Dante", tipo:"Literatura y pensamiento", p:"pp. 135, 145", nota:"Epopeya de la Florencia burguesa.", wiki:["en:Divine Comedy"] },
+    { id:"decameron", n:"Decamerón, Boccaccio", tipo:"Literatura y pensamiento", p:"pp. 139, 142", nota:"Ambientado en 1348, año de la peste negra.", wiki:["en:The Decameron","en:Decameron"] },
+    { id:"canterbury", n:"Cuentos de Canterbury, Chaucer", tipo:"Literatura y pensamiento", p:"p. 139", nota:"Parte de la explosión naturalista del XIV.", wiki:["en:The Canterbury Tales"] },
+    { id:"roman-rose", n:"Roman de la Rose", tipo:"Literatura y pensamiento", p:"p. 139", nota:"De Guillaume de Lorris y Jean de Meung, siglo XIII.", wiki:["en:Roman de la Rose"] },
+    { id:"hita", n:"Libro de buen amor, Arcipreste de Hita", tipo:"Literatura y pensamiento", p:"p. 139", nota:"Uno de los testimonios españoles del naturalismo.", wiki:["es:Libro de buen amor","en:The Book of Good Love"] },
+    { id:"talavera", n:"Arcipreste de Talavera", tipo:"Literatura y pensamiento", p:"p. 139", nota:"Alfonso Martínez de Toledo, autor del Corbacho.", wiki:["es:Alfonso Martínez de Toledo","en:Alfonso Martínez de Toledo"] },
+    { id:"jeu-nicolas", n:"Juego de San Nicolás", tipo:"Literatura y pensamiento", p:"p. 139", nota:"Teatro cómico del siglo XII.", wiki:["fr:Le Jeu de saint Nicolas","en:Jeu de saint Nicolas","en:Jean Bodel"] },
+    { id:"renart", n:"Le Roman de Renart", tipo:"Literatura y pensamiento", p:"p. 143", nota:"Recoge la sensibilidad burguesa.", wiki:["en:Reynard the Fox","fr:Roman de Renart"] },
+    { id:"pathelin", n:"Farce de Maître Pathelin", tipo:"Literatura y pensamiento", p:"p. 139", nota:"Teatro cómico del siglo XV.", wiki:["en:La Farce de Maître Pathelin","fr:La Farce de maître Pathelin"] },
+    { id:"manrique", n:"Coplas por la muerte de su padre, Manrique", tipo:"Literatura y pensamiento", p:"p. 146", nota:"Variante española del tema de la danza de la muerte.", wiki:["es:Coplas por la muerte de su padre","es:Jorge Manrique"] },
+    { id:"spinoza", n:"Ética, Spinoza", tipo:"Literatura y pensamiento", p:"pp. 137–138", nota:"Sistema moral que teoriza una moral burguesa ya vivida en los siglos XV y XVI.", wiki:["en:Baruch Spinoza","en:Ethics (Spinoza book)"] },
+    { id:"avaro", n:"El avaro, Molière", tipo:"Literatura y pensamiento", p:"p. 143", nota:"El burgués cada vez más amante de su dinero.", wiki:["en:The Miser","es:El avaro"] },
+    { id:"sancho", n:"Sancho Panza", tipo:"Literatura y pensamiento", p:"p. 147", nota:"Sus refranes expresan las verdades de compromiso de fines del XVI.", wiki:["en:Sancho Panza"] },
+    { id:"enciclopedia", n:"La Enciclopedia", tipo:"Literatura y pensamiento", p:"p. 147", nota:"Los ilustrados rompen el equilibrio del encubrimiento.", wiki:["en:Encyclopédie"] },
+
+    // Figuras
+    { id:"gelmirez", n:"Diego Gelmírez", tipo:"Figura histórica", p:"p. 128", nota:"Arzobispo y señor de Santiago de Compostela.", wiki:["en:Diego Gelmírez"] },
+    { id:"carlos-bueno", n:"Carlos el Bueno", tipo:"Figura histórica", p:"p. 128", nota:"Conde de Flandes asesinado en Brujas.", wiki:["en:Charles the Good"] },
+    { id:"artevelde", n:"Jacques van Artevelde", tipo:"Figura histórica", p:"p. 129", nota:"Caudillo de Gante, representante de los tejedores.", wiki:["en:Jacob van Artevelde"] },
+    { id:"michele-lando", n:"Michele di Lando", tipo:"Figura histórica", p:"p. 129", nota:"Encabezó el tumulto de los ciompi en Florencia.", wiki:["en:Michele di Lando"] },
+    { id:"abelardo", n:"Pedro Abelardo", tipo:"Figura histórica", p:"p. 142", nota:"Distinguió el dominio de la razón del de la fe.", wiki:["en:Peter Abelard"] },
+    { id:"aquino", n:"Santo Tomás de Aquino", tipo:"Figura histórica", p:"p. 137", nota:"Racionalizó la moral cristiano-feudal.", wiki:["en:Thomas Aquinas"] },
+    { id:"roger-bacon", n:"Roger Bacon", tipo:"Figura histórica", p:"p. 140", nota:"Franciscano de Oxford, pionero del examen experimental.", wiki:["en:Roger Bacon"] },
+    { id:"occam", n:"Guillermo de Occam", tipo:"Figura histórica", p:"pp. 142–143", nota:"Teólogo y filósofo; separa fe y razón.", wiki:["en:William of Ockham"] },
+    { id:"luis-baviera", n:"Luis IV de Baviera", tipo:"Figura histórica", p:"p. 143", nota:"Emperador que quería ser proclamado por el pueblo.", wiki:["en:Louis IV, Holy Roman Emperor"] },
+    { id:"federico-ii", n:"Federico II de Sicilia", tipo:"Figura histórica", p:"p. 145", nota:"Dante lo ubica entre los epicúreos.", wiki:["en:Frederick II, Holy Roman Emperor"] },
+    { id:"eckhart", n:"Meister Eckhart", tipo:"Figura histórica", p:"p. 144", nota:"Mística individualista del XIV.", wiki:["en:Meister Eckhart"] },
+    { id:"savonarola", n:"Savonarola", tipo:"Figura histórica", p:"pp. 133–134, 146", nota:"Quemado en la plaza de la Signoria.", wiki:["en:Girolamo Savonarola"] },
+    { id:"maquiavelo", n:"Nicolás Maquiavelo", tipo:"Figura histórica", p:"p. 148", nota:"Hizo pública la concepción del hombre que otros enmascaraban.", wiki:["en:Niccolò Machiavelli"] },
+    { id:"alberti", n:"Leone Battista Alberti", tipo:"Figura histórica", p:"p. 148", nota:"Primer gran teórico de la mentalidad burguesa.", wiki:["en:Leon Battista Alberti"] },
+    { id:"lutero", n:"La Reforma", tipo:"Figura histórica", p:"p. 144", nota:"Estalla a principios del XVI.", wiki:["en:Reformation","en:Martin Luther"] },
+    { id:"herbert", n:"Edward Herbert de Cherbury", tipo:"Figura histórica", p:"p. 141", nota:"Desarrolla la teoría del deísmo.", wiki:["en:Edward Herbert, 1st Baron Herbert of Cherbury"] },
+    { id:"kant", n:"Immanuel Kant", tipo:"Figura histórica", p:"pp. 137–139", nota:"Punto donde confluye el pensamiento sistemático moderno.", wiki:["en:Immanuel Kant"] },
+    { id:"burckhardt", n:"Jakob Burckhardt", tipo:"Figura histórica", p:"p. 149", nota:"Historiador cuya visión del Renacimiento discute Romero.", wiki:["en:Jacob Burckhardt"] }
+  ],
+
+  conceptos: [
+    { t:"Ciudad gótica", d:"La ciudad burguesa en su fase inicial (siglos XI a XVI): sociedad compacta, igualitaria al principio, que crea su hábitat, su estilo de vida y su mentalidad." },
+    { t:"Comuna y carta comunal", d:"Gobierno propio que se da la ciudad al romper con su señor. Sus cartas o fueros eran democráticos y, para Romero, contienen en germen la idea de contrato social." },
+    { t:"Patriciado", d:"Aristocracia surgida dentro de la burguesía: quienes acumularon capital primero y tomaron el poder. Se consolida como la clase más rica y separada del resto." },
+    { t:"Oficios o gremios", d:"Artesanos organizados (como los tejedores de Gante) que disputan el poder a los patricios y dan lugar a regímenes patricio-gremiales." },
+    { t:"Ciompi", d:"En Florencia, los que no tenían oficio: protagonistas de las insurrecciones populares del siglo XIV contra gremios, patricios y señores." },
+    { t:"Gótico urbano", d:"El gótico como creación de las burguesías urbanas: la ciudad como sistema plástico de calles, plazas e iglesias, donde el exterior expresa el interior." },
+    { t:"Espacio libre y plaza", d:"La plaza y la plazuela funcionan como un ámbito interior colectivo: allí se negocia, se discute política y se forman opiniones, valores y gusto." },
+    { t:"Profanidad o naturalismo", d:"Descubrimiento del hombre como ser natural y sensible, no solo como pecador destinado al juicio del más allá." },
+    { t:"Deísmo", d:"Dios es creador, pero la naturaleza se emancipa y funciona según sus propias leyes, que el hombre conoce con sus sentidos y su razón." },
+    { t:"Encubrimiento", d:"Posición conciliadora predominante: vivir según la concepción naturalista pero enmascararla bajo formas y normas heredadas. Genera las «verdades de compromiso»." },
+    { t:"Control social", d:"Vigilancia de todos sobre cada uno, típica de comunidades urbanas que empezaron siendo aldeas de 10.000 o 20.000 habitantes." },
+    { t:"Donantes", d:"Quienes pagan una obra y aparecen arrodillados en sus esquinas, a veces con su familia; la capilla puede llevar su nombre, como la de los Scrovegni." }
+  ]
+}
+];
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const slug = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-");
+const imgCache = {};   // "lang:titulo" -> {thumb,url}
+
+function renderTabs(actual){
+  const tabs = $("#tabs");
+  tabs.querySelectorAll(".tab").forEach(t => t.remove());
+  CLASES.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "tab" + (c.pendiente ? " pendiente" : "");
+    b.innerHTML = `${esc(c.corto)}<small>${esc(c.tema)}</small>`;
+    b.setAttribute("aria-current", c.id === actual ? "true" : "false");
+    b.onclick = () => { location.hash = c.id; };
+    tabs.appendChild(b);
+  });
+}
+
+function renderPendiente(c){
+  return `<div class="wrap pend">
+    <p class="fecha" style="font-family:var(--sans);color:var(--tinta-suave)">Jueves ${esc(c.corto)}</p>
+    <h1 style="font-family:var(--gotica);font-weight:400;font-size:clamp(2.6rem,7vw,4.6rem);margin:0">${esc(c.tema)}</h1>
+    <p class="intro" style="margin-top:14px">Todavía no hay resumen de esta clase. Cuando subas el material, se completa con su línea de tiempo y su galería.</p>
+    <h2 style="font-size:1.3rem">Lecturas del cronograma</h2>
+    <ul>${c.lecturas.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+  </div>`;
+}
+
+function renderClase(c){
+  const gal = Object.fromEntries(c.galeria.map(g => [g.id, g]));
+  const maxEv = Math.max(...c.siglos.map(s => s.eventos.length));
+  const torres = c.siglos.map(s => {
+    const h = 30 + 62 * (s.eventos.length / maxEv);
+    return `<button class="torre" data-siglo="${s.n}" aria-label="Ir al siglo ${s.n}: ${s.eventos.length} hechos">
+      <span class="cuerpo" style="height:${h}%"></span>
+      <span class="num">${s.n}</span><span class="cant">${s.eventos.length} ${s.eventos.length===1?"hecho":"hechos"}</span>
+    </button>`;
+  }).join("");
+
+  const secciones = c.secciones.map(s => `<li><h3>${esc(s.t)}</h3><span class="pp">${esc(s.pp)}</span><p>${esc(s.d)}</p></li>`).join("");
+
+  const timeline = c.siglos.map(s => `
+    <div class="siglo" id="siglo-${s.n}">
+      <div class="siglo-cab"><span class="num" aria-hidden="true">${s.n}</span><h3>${esc(s.nombre)}</h3></div>
+      ${s.eventos.map(e => `
+        <article class="evento">
+          <div class="cuando">${e.ref ? `<span class="ref-fecha" title="Fecha de referencia: no figura en el texto">${esc(e.cuando)}</span>` : esc(e.cuando)}</div>
+          <div class="cuerpo">
+            <h4>${esc(e.t)}</h4>
+            <p>${esc(e.d)}</p>
+            <div class="meta"><span class="pag">${esc(e.pag)}</span><span>${esc(e.sec)}</span></div>
+            ${e.img && e.img.length ? `<div class="miniaturas">${e.img.filter(id => gal[id]).map(id => `
+              <button class="mini" data-pieza="${id}"><div class="foto" data-foto="${id}"><div class="sin-foto cargando">${esc(gal[id].n[0])}</div></div><span>${esc(gal[id].n)}</span></button>`).join("")}</div>` : ""}
+          </div>
+        </article>`).join("")}
+    </div>`).join("");
+
+  const tipos = [...new Set(c.galeria.map(g => g.tipo))];
+  const filtros = `<button aria-pressed="true" data-tipo="">Todo (${c.galeria.length})</button>` +
+    tipos.map(t => `<button aria-pressed="false" data-tipo="${esc(t)}">${esc(t)} (${c.galeria.filter(g=>g.tipo===t).length})</button>`).join("") +
+    `<input type="search" id="buscar" placeholder="Buscar un lugar u obra" aria-label="Buscar en la galería">`;
+
+  const grilla = c.galeria.map(g => `
+    <figure class="pieza" data-tipo="${esc(g.tipo)}" data-texto="${esc(slug(g.n + " " + g.nota))}">
+      <button data-pieza="${g.id}" aria-label="Ver ${esc(g.n)}"><div class="foto" data-foto="${g.id}"><div class="sin-foto cargando">${esc(g.n[0])}</div></div></button>
+      <figcaption><span class="nombre">${esc(g.n)}</span><span class="tipo">${esc(g.tipo)}, ${esc(g.p)}</span><p class="nota">${esc(g.nota)}</p></figcaption>
+    </figure>`).join("");
+
+  const conceptos = c.conceptos.map(k => `<div><dt>${esc(k.t)}</dt><dd>${esc(k.d)}</dd></div>`).join("");
+
+  return `
+  <header class="hero"><div class="wrap">
+    <p class="fecha">${esc(c.fechaLarga)}</p>
+    <h1>${esc(c.titulo)}</h1>
+    <p class="ref">${c.referencia}</p>
+    ${c.tambien ? `<p class="tambien">${c.tambien}</p>` : ""}
+    <div class="skyline">
+      <p>Cada torre es un siglo; su altura, la cantidad de hechos que Romero ubica ahí. Tocá una para ir a esa parte de la línea de tiempo.</p>
+      <div class="torres">${torres}</div>
+    </div>
+  </div></header>
+
+  <nav class="subnav" aria-label="Secciones de la clase"><div class="wrap">
+    <a href="#ideas">Idea central</a><a href="#linea">Línea de tiempo</a><a href="#galeria">Lugares y obras</a><a href="#conceptos">Conceptos</a>
+  </div></nav>
+
+  <div class="wrap">
+    <section class="bloque" id="ideas">
+      <h2>Idea central</h2>
+      <p class="tesis">${esc(c.tesis)}</p>
+      <ol class="capitulo">${secciones}</ol>
+    </section>
+
+    <section class="bloque" id="linea">
+      <h2>Línea de tiempo</h2>
+      <p class="intro">Romero no escribe en orden cronológico: salta entre siglos para mostrar cómo nace y madura la mentalidad burguesa. Acá sus hechos están ordenados por época.</p>
+      <p class="leyenda">Las fechas <span class="ref-fecha">subrayadas con puntos</span> no aparecen en el texto: se agregan como referencia para ubicar el hecho. Las demás siguen lo que dice Romero.</p>
+      ${timeline}
+    </section>
+
+    <section class="bloque" id="galeria">
+      <h2>Lugares y obras</h2>
+      <p class="intro">Todo lo que el texto nombra, con la página donde aparece. Tocá una imagen para verla grande.</p>
+      <p class="aviso" id="aviso-img">No se pudieron cargar las imágenes. Se traen de Wikipedia, así que la página necesita conexión a internet: abrí el archivo desde tu navegador (Chrome, Edge o Firefox).</p>
+      <div class="filtros" role="group" aria-label="Filtrar galería">${filtros}</div>
+      <div class="grilla" id="grilla">${grilla}</div>
+    </section>
+
+    <section class="bloque" id="conceptos">
+      <h2>Conceptos para repasar</h2>
+      <dl class="conceptos">${conceptos}</dl>
+    </section>
+  </div>`;
+}
+
+function montar(){
+  const id = decodeURIComponent(location.hash.slice(1));
+  const primeraConMaterial = [...CLASES].reverse().find(c => !c.pendiente);
+  const c = CLASES.find(x => x.id === id) || primeraConMaterial;
+  renderTabs(c.id);
+  const app = $("#app");
+  if (c.pendiente){ app.innerHTML = renderPendiente(c); window.scrollTo(0,0); return; }
+  app.innerHTML = renderClase(c);
+  document.title = `HSA II · ${c.corto} · ${c.titulo}`;
+
+  app.querySelectorAll(".torre").forEach(t => t.onclick = () =>
+    document.getElementById("siglo-" + t.dataset.siglo).scrollIntoView());
+
+  // filtros
+  let tipoActivo = "";
+  const aplicar = () => {
+    const q = slug($("#buscar").value.trim());
+    app.querySelectorAll(".pieza").forEach(p => {
+      const ok = (!tipoActivo || p.dataset.tipo === tipoActivo) && (!q || p.dataset.texto.includes(q));
+      p.hidden = !ok;
+    });
+  };
+  app.querySelectorAll(".filtros button").forEach(b => b.onclick = () => {
+    tipoActivo = b.dataset.tipo;
+    app.querySelectorAll(".filtros button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    aplicar();
+  });
+  $("#buscar").oninput = aplicar;
+
+  // visor
+  const gal = Object.fromEntries(c.galeria.map(g => [g.id, g]));
+  app.querySelectorAll("[data-pieza]").forEach(b => b.onclick = () => abrirVisor(gal[b.dataset.pieza]));
+
+  cargarImagenes(c.galeria);
+}
+
+function abrirVisor(g){
+  const v = $("#visor");
+  const img = $("#visor-img");
+  if (g._img){ img.src = g._img; img.alt = g.n; img.hidden = false; } else { img.hidden = true; }
+  $("#visor-titulo").textContent = g.n;
+  $("#visor-nota").textContent = `${g.nota} (${g.p})`;
+  const link = $("#visor-link");
+  link.href = g._url || `https://es.wikipedia.org/w/index.php?search=${encodeURIComponent(g.n)}`;
+  link.textContent = g._url ? "Abrir en Wikipedia" : "Buscar en Wikipedia";
+  v.showModal();
+}
+$("#visor-cerrar").onclick = () => $("#visor").close();
+$("#visor").addEventListener("click", e => { if (e.target.id === "visor") e.target.close(); });
+
+/* =========================================================
+   IMÁGENES: se piden a la API de Wikipedia (sin clave).
+   Por cada pieza se prueban sus candidatos en orden.
+   ========================================================= */
+async function consultarLote(lang, titulos){
+  const url = `https://${lang}.wikipedia.org/w/api.php?action=query&format=json&origin=*&redirects=1`
+    + `&prop=pageimages|info&inprop=url&piprop=thumbnail&pithumbsize=900&pilimit=50`
+    + `&titles=${encodeURIComponent(titulos.join("|"))}`;
+  const r = await fetch(url);
+  const j = await r.json();
+  const q = j.query || {};
+  const destino = {};
+  titulos.forEach(t => destino[t] = t);
+  for (const lista of [q.normalized || [], q.redirects || []]){
+    lista.forEach(n => { for (const k in destino) if (destino[k] === n.from) destino[k] = n.to; });
+  }
+  const paginas = Object.values(q.pages || {});
+  titulos.forEach(t => {
+    const p = paginas.find(pg => pg.title === destino[t]);
+    imgCache[`${lang}:${t}`] = (p && !("missing" in p) && !("invalid" in p))
+      ? { thumb: p.thumbnail ? p.thumbnail.source : null, url: p.fullurl }
+      : null;
+  });
+}
+
+async function cargarImagenes(piezas){
+  const porIdioma = {};
+  piezas.forEach(g => g.wiki.forEach(w => {
+    if (w in imgCache) return;
+    const i = w.indexOf(":");
+    (porIdioma[w.slice(0,i)] ||= new Set()).add(w.slice(i+1));
+  }));
+  const tareas = [];
+  for (const [lang, set] of Object.entries(porIdioma)){
+    const arr = [...set];
+    for (let i = 0; i < arr.length; i += 45) tareas.push(consultarLote(lang, arr.slice(i, i+45)).catch(() => {}));
+  }
+  await Promise.all(tareas);
+
+  let conFoto = 0;
+  piezas.forEach(g => {
+    const hits = g.wiki.map(w => imgCache[w]).filter(Boolean);
+    const conImg = hits.find(h => h.thumb);
+    g._img = conImg ? conImg.thumb : null;
+    g._url = (conImg || hits[0] || {}).url || null;
+    if (g._img) conFoto++;
+    document.querySelectorAll(`[data-foto="${g.id}"]`).forEach(box => {
+      if (g._img){
+        const im = new Image();
+        im.alt = g.n; im.loading = "lazy"; im.decoding = "async";
+        im.onload = () => { box.innerHTML = ""; box.appendChild(im); };
+        im.onerror = () => { const s = box.querySelector(".sin-foto"); if (s) s.classList.remove("cargando"); };
+        im.src = g._img;
+      } else {
+        const s = box.querySelector(".sin-foto"); if (s) s.classList.remove("cargando");
+      }
+    });
+  });
+  if (conFoto === 0){ const a = $("#aviso-img"); if (a) a.style.display = "block"; }
+}
+
+window.addEventListener("hashchange", montar);
+montar();
+</script>
+</body></html>
